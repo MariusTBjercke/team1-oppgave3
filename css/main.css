@@ -1,0 +1,87 @@
+:root {
+    --page-width: 800px;
+    --bg-color: #e5e5dc;
+    --font-family: 'Raleway',sans-serif;
+    --text-color: #26495c;
+    --paragraph-color: #26495c;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+h1 {
+    font-family: 'Raleway',sans-serif;
+    color: #c66b3d;
+    font-size: 62px;
+    font-weight: 800;
+    line-height: 72px;
+    margin: 0 0 24px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-family: 'Raleway',sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    color: #c66b3d;
+    line-height: 36px;
+    margin: 0 0 24px;
+    text-align: center;
+}
+
+main {
+    max-width: var(--page-width);
+    margin: auto;
+    font-family: var(--font-family);
+}
+
+#sentence {
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+p {
+    text-align: center;
+    color: var(--text-color);
+    font-family: 'Raleway',sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 5px;
+}
+
+#word-options {
+    max-width: 300px;
+    margin: auto;
+}
+
+#word-options button {
+    padding: 2vh;
+    background-color: #c4a35a;
+    color: var(--text-color);
+    margin: .5vh;
+    border: 0;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+#word-options button:hover {
+    background-color: #c66b3d;
+    color: #000000;
+    cursor: pointer;
+}
+
+#pic1 {
+    width: 250px;
+    height: 250px;
+    background: url("../img/windows-icon.png");
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
