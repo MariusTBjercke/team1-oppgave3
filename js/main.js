@@ -6,12 +6,8 @@ var storyButtons = document.getElementById('story-buttons');
 var dragElem;
 var story;
 
-var sentences = {
-    "storynames": [
-        "The act",
-        "The nordic empire"
-    ],
-    "stories": {
+// Changed name from "sentences" to "stories" for this array to make more sense
+var stories = {
         "The act": [
             {
                 "sentences": [
@@ -70,7 +66,6 @@ var sentences = {
                 ]
             },
         ],
-    }
 };
 
 view();
@@ -78,8 +73,8 @@ function view() {
 
     if (!story) {
         sentenceView.style.display = "none";
-        for (let i = 0; i < sentences['storynames'].length; i++) {
-            let storyname = sentences['storynames'][i];
+        for (let i = 0; i < Object.keys(stories).length; i++) {
+            let storyname = Object.keys(stories)[i];
             const button = document.createElement("button");
             button.innerText = storyname;
             storyButtons.appendChild(button);
@@ -92,10 +87,10 @@ function view() {
         storyView.style.display = "none";
         // Show sentence view
         sentenceView.style.display = "inherit";
-        let randomNumber = Math.floor(Math.random() * sentences['stories'][story].length);
+        let randomNumber = Math.floor(Math.random() * stories[story].length);
 
-        for (let i = 0; i < sentences['stories'][story][randomNumber]['sentences'].length; i++) {
-            let sentence = sentences['stories'][story][randomNumber]['sentences'];
+        for (let i = 0; i < stories[story][randomNumber]['sentences'].length; i++) {
+            let sentence = stories[story][randomNumber]['sentences'];
             sentenceDiv.innerHTML += sentence[i];
 
             // Add empty spaces where we want to insert words
@@ -107,17 +102,13 @@ function view() {
         }
 
         // Create word buttons
-        for (let i = 0; i < sentences['stories'][story][randomNumber]['words'].length; i++) {
-            const button = document.createElement("button", );
-            button.innerText = sentences['stories'][story][randomNumber]['words'][i];
+        for (let i = 0; i < stories[story][randomNumber]['words'].length; i++) {
+            const button = document.createElement("button");
+            button.innerText = stories[story][randomNumber]['words'][i];
             wordOptions.appendChild(button);
             button.setAttribute("draggable", "true");
             button.addEventListener("dragstart", dragStartHandler, false);
             button.addEventListener("dragend", dragEndHandler, false);
-            button.addEventListener("dragover", dragOverHandler, false);
-            button.addEventListener("dragenter", dragEnterHandler, false);
-            button.addEventListener("dragleave", dragLeaveHandler, false);
-            button.addEventListener("drop", dragDropHandler, false);
         }
     }
 }
@@ -132,14 +123,15 @@ function dragEndHandler(e) {
 }
 
 function dragOverHandler(e) {
-    e.preventDefault();
+    if (e.target.className === "dropzone") {
+        e.preventDefault();
+    }
 }
 
 function dragEnterHandler(e) {
     if (e.target.className === "dropzone empty-space") {
         e.target.innerHTML = dragElem.innerHTML;
         e.target.classList.remove("empty-space");
-        console.log('ENTER');
     }
 }
 
@@ -151,12 +143,13 @@ function dragLeaveHandler(e) {
 }
 
 function dragDropHandler(e) {
-    dragElem.innerHTML = e.target;
+    e.target.innerHTML = dragElem.innerHTML;
     if (e.target.className === "dropzone") {
         console.log('DROPPED');
     }
 }
 
 sentenceDiv.addEventListener("dragenter", dragEnterHandler, false);
+sentenceDiv.addEventListener("dragover", dragOverHandler, false);
 sentenceDiv.addEventListener("dragleave", dragLeaveHandler, false);
-sentenceDiv.addEventListener("dragdrop", dragDropHandler, false);
+sentenceDiv.addEventListener("drop", dragDropHandler, false);
