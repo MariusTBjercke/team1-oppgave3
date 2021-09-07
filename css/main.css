@@ -24,6 +24,7 @@ h1 {
     margin: 0 0 24px;
     text-align: center;
     text-transform: uppercase;
+    transition: 1s;
 }
 
 h2 {
@@ -34,6 +35,7 @@ h2 {
     line-height: 36px;
     margin: 0 0 24px;
     text-align: center;
+    transition: 1s;
 }
 
 main {
@@ -61,8 +63,9 @@ p {
 }
 
 #word-options {
-    max-width: 320px;
-    margin: auto;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: auto auto auto;
 }
 
 button {
@@ -89,15 +92,56 @@ button:hover {
     position: absolute;
     right: 0;
     bottom: 0;
+    transition: 1s;
 }
 
 #story-buttons {
-    max-width: 300px;
-    margin: auto;
+    display: grid;
+    justify-content: center;
+    row-gap: 1vh;
+}
+
+#story-buttons button {
+    font-size: 1em;
+    min-width: 350px;
+    transition: 1s;
 }
 
 .empty-space::after {
     content: "___";
     background-color: #000000;
     opacity: .2;
+}
+
+.inserted-text {
+    border-bottom: 2px dotted #26495c;
+}
+
+@media screen and (max-width: 600px) {
+
+    h1 {
+        font-size: 2.7em;
+        margin: .2vh;
+    }
+
+    h2 {
+        font-size: 1em;
+        margin: .2vh;
+    }
+
+    #story-buttons button {
+        font-size: .8em;
+        min-width: 250px;
+    }
+
+    button {
+        padding: 1.3vh;
+    }
+
+    #pic1 {
+        width: 125px;
+        height: 125px;
+        background-size: cover;
+    }
+
 }
